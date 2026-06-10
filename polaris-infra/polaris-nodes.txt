@@ -1,0 +1,1 @@
+Node-1: k8s-master | Node-2: k8s-worker-1 | Node-3: k8s-worker-2

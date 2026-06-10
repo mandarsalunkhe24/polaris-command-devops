@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polaris-comms
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {app: polaris}
+  template:
+    metadata:
+      labels: {app: polaris}
+    spec:
+      containers:
+      - name: polaris
+        image: docker.io/library/polaris-comms:v1
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          httpGet: {path: /health, port: 5000}
+          initialDelaySeconds: 10
+        resources:
+          requests: {cpu: "100m", memory: "128Mi"}
+          limits: {cpu: "500m", memory: "256Mi"}
